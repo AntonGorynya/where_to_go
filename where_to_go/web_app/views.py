@@ -1,6 +1,6 @@
 from django.shortcuts import render, loader
 from django.http import HttpResponse
 
-def main(request):
-  template = loader.get_template('main.html')
+def index(request):
+  template = loader.get_template('index.html')
   return HttpResponse(template.render())
