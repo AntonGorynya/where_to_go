@@ -10,3 +10,24 @@ class Place(models.Model):
 
     def __str__(self):
         return f'{self.title} {self.lon} {self.lat}'
+
+
+class Image(models.Model):
+    number = models.IntegerField(verbose_name='Порядковый номер')
+    image = models.ImageField('Изображение', null=True)
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='place')
+
+    @classmethod
+    def validate_number(cls, image):
+        numbers = list(cls.objects.values('number').distinct())
+        numbers = [num['number'] for num in numbers]
+        print(numbers)
+        print(image.number)
+        if image.number in numbers or image.number < 1:
+            raise ValueError('Номера должны отличаться и быть положительны')
+
+    def __str__(self):
+        return f'{self.number} {self.image}'
+
+    def clean(self):
+        self.validate_number(self)
