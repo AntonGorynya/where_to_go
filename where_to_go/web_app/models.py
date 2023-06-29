@@ -1,5 +1,5 @@
 from django.db import models
-
+from django import forms
 
 class Place(models.Model):
     title = models.CharField(max_length=50, verbose_name='Заголовок')
@@ -24,7 +24,7 @@ class Image(models.Model):
         print(numbers)
         print(image.number)
         if image.number in numbers or image.number < 1:
-            raise ValueError('Номера должны отличаться и быть положительны')
+            raise forms.ValidationError('Номера должны отличаться и быть положительны')
 
     def __str__(self):
         return f'{self.number} {self.image}'
