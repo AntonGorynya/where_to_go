@@ -22,4 +22,5 @@ from web_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='indexpage'),
+    path('places/<int:place_id>/', views.place_detail),
 ]

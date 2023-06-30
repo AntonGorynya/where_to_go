@@ -3,6 +3,8 @@ from django import forms
 
 class Place(models.Model):
     title = models.CharField(max_length=50, verbose_name='Заголовок')
+    description_short = models.CharField(max_length=100, default='Пару слов о месте', verbose_name='Краткое описание')
+    description_long = models.TextField(default='Подробное описание места', verbose_name='Подробное Описание')
     placeId = models.CharField(max_length=50, verbose_name='placeId')
     detailsUrl = models.CharField(max_length=50, verbose_name='detailsUrl')
     lon = models.DecimalField(max_digits=9, decimal_places=6)
@@ -14,7 +16,7 @@ class Place(models.Model):
 
 class Image(models.Model):
     number = models.IntegerField(verbose_name='Порядковый номер')
-    image = models.ImageField('Изображение', null=True)
+    name = models.ImageField('Изображение', null=True)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='place')
 
     @classmethod
