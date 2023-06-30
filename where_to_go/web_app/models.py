@@ -27,7 +27,7 @@ class Image(models.Model):
             raise forms.ValidationError('Номера должны отличаться и быть положительны')
 
     def __str__(self):
-        return f'{self.number} {self.image}'
+        return f'{self.number} {self.place}'
 
     def clean(self):
         self.validate_number(self)
