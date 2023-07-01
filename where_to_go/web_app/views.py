@@ -22,7 +22,7 @@ def index(request):
                 "properties": {
                     "title": place.title,
                     "placeId": place.placeId,
-                    "detailsUrl": urljoin(STATIC_URL, place.detailsUrl),
+                    "details": f'places/{place.id}/',
                 }
             }
         )
@@ -31,8 +31,7 @@ def index(request):
     return HttpResponse(template.render(context))
 
 
-def place_detail(request, place_id=0):
-    place = get_object_or_404(Place, pk=place_id)
+def get_place_meta(place):
     images = Image.objects.filter(place=place)
     place_meta = {
         'title': place.title,
@@ -46,6 +45,10 @@ def place_detail(request, place_id=0):
     }
     for image in images:
         place_meta['imgs'].append(urljoin(MEDIA_URL, str(image.name)))
-    print(place_meta)
-    return JsonResponse(place_meta, safe=True, json_dumps_params={'ensure_ascii': False})
+    return place_meta
+
+def place_detail(request, place_id=0):
+    place = get_object_or_404(Place, pk=place_id)
+    place_meta = get_place_meta(place)
+    return JsonResponse(place_meta, safe=True, json_dumps_params={'ensure_ascii': False, 'indent': 2})
 

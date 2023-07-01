@@ -3,7 +3,7 @@ from django import forms
 
 class Place(models.Model):
     title = models.CharField(max_length=50, verbose_name='Заголовок')
-    description_short = models.CharField(max_length=100, default='Пару слов о месте', verbose_name='Краткое описание')
+    description_short = models.TextField(default='Пару слов о месте', verbose_name='Краткое описание')
     description_long = models.TextField(default='Подробное описание места', verbose_name='Подробное Описание')
     placeId = models.CharField(max_length=50, verbose_name='placeId')
     detailsUrl = models.CharField(max_length=50, verbose_name='detailsUrl')
@@ -21,7 +21,7 @@ class Image(models.Model):
 
     @classmethod
     def validate_number(cls, image):
-        numbers = list(cls.objects.values('number').distinct())
+        numbers = list(cls.objects.filter(place=image.place).values('number').distinct())
         numbers = [num['number'] for num in numbers]
         print(numbers)
         print(image.number)
