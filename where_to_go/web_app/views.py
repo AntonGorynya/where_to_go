@@ -44,7 +44,7 @@ def get_place_meta(place):
         }
     }
     for image in images:
-        place_meta['imgs'].append(urljoin(MEDIA_URL, str(image.name)))
+        place_meta['imgs'].append(urljoin(MEDIA_URL, str(image.image)))
     return place_meta
 
 def place_detail(request, place_id=0):
