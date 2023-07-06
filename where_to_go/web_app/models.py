@@ -15,17 +15,18 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    number = models.IntegerField(verbose_name='Порядковый номер')
+    order = models.PositiveIntegerField(verbose_name='Порядковый номер', default=0)
     image = models.ImageField('Изображение', null=True)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='place')
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['place', 'number'], name='name of constraint')
+            models.UniqueConstraint(fields=['place', 'order'], name='name of constraint')
         ]
+        ordering = ['order']
 
     def __str__(self):
-        return f'{self.number} {self.place}'
+        return f'{self.order} {self.place}'
 
     # @classmethod
     # def validate_number(cls, image):

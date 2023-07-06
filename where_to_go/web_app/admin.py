@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 from .models import Place, Image
+from adminsortable2.admin import SortableAdminMixin, SortableStackedInline
 
 
 @admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
+class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
     readonly_fields = [
         'preview'
     ]
