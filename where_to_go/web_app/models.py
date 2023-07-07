@@ -6,9 +6,11 @@ class Place(models.Model):
     description_short = models.TextField(default='Пару слов о месте', verbose_name='Краткое описание')
     description_long = models.TextField(default='Подробное описание места', verbose_name='Подробное Описание')
     placeId = models.CharField(max_length=50, verbose_name='placeId')
-    #detailsUrl = models.CharField(max_length=50, verbose_name='detailsUrl')
     lon = models.DecimalField(max_digits=9, decimal_places=6)
     lat = models.DecimalField(max_digits=9, decimal_places=6)
+
+    class Meta:
+        ordering = ['title']
 
     def __str__(self):
         return f'{self.title} {self.lon} {self.lat}'
@@ -20,10 +22,10 @@ class Image(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='place')
 
     class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['place', 'order'], name='name of constraint')
-        ]
-        ordering = ['order']
+        # constraints = [
+        #     models.UniqueConstraint(fields=['place', 'order'], name='name of constraint')
+        # ]
+        ordering = ['order', 'place']
 
     def __str__(self):
         return f'{self.order} {self.place}'
@@ -34,8 +36,8 @@ class Image(models.Model):
     #     numbers = [num['number'] for num in numbers]
     #     print(numbers)
     #     print(image.number)
-    #     if image.number in numbers or image.number < 1:
-    #         raise forms.ValidationError('Номера должны отличаться и быть положительны')
+    #     if image.number in numbers:
+    #         raise forms.ValidationError('Номера должны отличаться')
 
     # def clean(self):
     #     self.validate_number(self)

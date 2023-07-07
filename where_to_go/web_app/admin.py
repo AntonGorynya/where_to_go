@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 from .models import Place, Image
-from adminsortable2.admin import SortableAdminMixin, SortableStackedInline
+from adminsortable2.admin import SortableAdminMixin, SortableStackedInline, SortableTabularInline
 
 
 @admin.register(Image)
@@ -9,6 +9,7 @@ class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
     readonly_fields = [
         'preview'
     ]
+    list_display = ['place', 'order', 'preview']
     def preview(self, obj):
         return mark_safe('<img src="{url}" style="max-height:200px">'.format(
             url=obj.image.url,
@@ -17,7 +18,8 @@ class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
         )
         )
 
-class ImageInline(admin.TabularInline):
+
+class ImageInline(SortableTabularInline):
     model = Image
     readonly_fields = [
         'preview'
@@ -32,7 +34,7 @@ class ImageInline(admin.TabularInline):
         )
 
 @admin.register(Place)
-class PlaceAdmin(admin.ModelAdmin):
+class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [
         ImageInline,
     ]
