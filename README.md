@@ -24,6 +24,8 @@ python3 manage.py createsuperuser
 Перед установкой создайте файл **.env** в папке **where_to_go** вида:
 ```properties
 SECRET_KEY='ваш ключ'
+DEBUG=False
+ALLOWED_HOSTS='*'
 ```
 
 
