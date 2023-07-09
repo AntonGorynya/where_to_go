@@ -17,7 +17,7 @@ def index(request):
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [float(place.lon), float(place.lat)]
+                    "coordinates": [float(place.lng), float(place.lat)]
                 },
                 "properties": {
                     "title": place.title,
@@ -40,7 +40,7 @@ def get_place_meta(place):
         'description_long': place.description_long,
         'coordinates': {
             'lat': place.lat,
-            'lon': place.lon,
+            'lon': place.lng,
         }
     }
     for image in images:

@@ -33,8 +33,6 @@ CSRF_COOKIE_SECURE = True
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
-print(ALLOWED_HOSTS)
-
 
 # Application definition
 
