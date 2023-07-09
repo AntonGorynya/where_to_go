@@ -37,6 +37,11 @@ python3 -c 'from django.core.management.utils import get_random_secret_key; prin
 ```sh
 python manage.py runserver
 ```
+Для заполнения БД тестовыми данными воспользуйтесь командой
+```python
+python manage.py load_place 
+```
+
 
 ### Пример сайта
 Вы можете найти пример исполнения по ссылке
