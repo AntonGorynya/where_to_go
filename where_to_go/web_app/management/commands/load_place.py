@@ -30,6 +30,7 @@ class Command(BaseCommand):
             zip_ref.extractall(TEMP_DIR)
         if VERBOSE:
             print('Unzipped.\nProcessing...')
+        os.remove(filename)
         places_folder = os.path.join(TEMP_DIR, 'where-to-go-places-master', 'places')
         media_folder = os.path.join(TEMP_DIR, 'where-to-go-places-master', 'media')
         for place_file_name in os.listdir(places_folder):
@@ -53,4 +54,7 @@ class Command(BaseCommand):
                         with open(os.path.join(media_folder, filename), 'rb') as file:
                             image.image.save(filename, file, save=True)
                     place.save()
+        if VERBOSE:
+            print('Completed.\nDeleting...')
+
 
