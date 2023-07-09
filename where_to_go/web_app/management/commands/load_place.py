@@ -53,6 +53,7 @@ class Command(BaseCommand):
                         )
                         with open(os.path.join(media_folder, filename), 'rb') as file:
                             image.image.save(filename, file, save=True)
+                        os.remove(os.path.join(media_folder, filename))
                     place.save()
         if VERBOSE:
             print('Completed.\nDeleting...')
