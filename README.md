@@ -27,10 +27,17 @@ SECRET_KEY='ваш ключ'
 DEBUG=False
 ALLOWED_HOSTS='*'
 ```
-
+Вы можете сгенерировать ключ командой
+```sh
+python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
 
 ### Как запустить
 Для запуска сайта воспользуйтесь командой
 ```sh
 python manage.py runserver
 ```
+
+### Пример сайта
+Вы можете найти пример исполнения по ссылке
+https://sdieul.pythonanywhere.com
