@@ -10,6 +10,7 @@ class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
         'preview'
     ]
     list_display = ['place', 'order', 'preview']
+
     def preview(self, obj):
         return mark_safe('<img src="{url}" style="max-height:200px">'.format(
             url=obj.image.url,
@@ -33,10 +34,9 @@ class ImageInline(SortableTabularInline):
         )
         )
 
+
 @admin.register(Place)
 class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
     inlines = [
         ImageInline,
     ]
-
-

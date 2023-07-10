@@ -6,6 +6,7 @@ from django.shortcuts import render, loader
 from django.http import HttpResponse, JsonResponse
 from .models import Place, Image
 
+
 def index(request):
     places = {
         'type': 'FeatureCollection',
@@ -47,8 +48,8 @@ def get_place_meta(place):
         place_meta['imgs'].append(urljoin(MEDIA_URL, str(image.image)))
     return place_meta
 
+
 def place_detail(request, place_id=0):
     place = get_object_or_404(Place, pk=place_id)
     place_meta = get_place_meta(place)
     return JsonResponse(place_meta, safe=True, json_dumps_params={'ensure_ascii': False, 'indent': 2})
-

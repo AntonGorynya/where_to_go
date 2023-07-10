@@ -11,6 +11,7 @@ PLACES_URL = 'https://github.com/devmanorg/where-to-go-places/archive/refs/heads
 VERBOSE = True
 TEMP_DIR = 'TMP'
 
+
 class Command(BaseCommand):
     help = 'Наполнение БД тестовыми данными'
 
@@ -58,6 +59,3 @@ class Command(BaseCommand):
         if VERBOSE:
             print('Completed.\nDeleting...')
         shutil.rmtree(os.path.join(TEMP_DIR, 'where-to-go-places-master'))
-
-
-

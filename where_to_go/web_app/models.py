@@ -2,6 +2,7 @@ from django.db import models
 from django import forms
 from tinymce.models import HTMLField
 
+
 class Place(models.Model):
     title = models.CharField(max_length=50, verbose_name='Заголовок')
     description_short = models.TextField(default='Пару слов о месте', verbose_name='Краткое описание')
