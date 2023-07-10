@@ -4,6 +4,7 @@ import zipfile
 from django.core.management.base import BaseCommand
 from ...models import Image, Place
 import requests
+import shutil
 
 
 PLACES_URL = 'https://github.com/devmanorg/where-to-go-places/archive/refs/heads/master.zip'
@@ -14,14 +15,14 @@ class Command(BaseCommand):
     help = 'Наполнение БД тестовыми данными'
 
     def handle(self, *args, **kwargs):
-        response = requests.get(PLACES_URL)
-        response.raise_for_status()
-
         _, filename = os.path.split(PLACES_URL)
-        os.makedirs(TEMP_DIR, exist_ok=True)
-        filename = os.path.join(TEMP_DIR, filename)
         if VERBOSE:
             print(f'{filename} downloading...\nPlease wait.')
+
+        response = requests.get(PLACES_URL)
+        response.raise_for_status()
+        os.makedirs(TEMP_DIR, exist_ok=True)
+        filename = os.path.join(TEMP_DIR, filename)
         with open(filename, 'wb') as file:
             file.write(response.content)
         if VERBOSE:
@@ -53,9 +54,10 @@ class Command(BaseCommand):
                         )
                         with open(os.path.join(media_folder, filename), 'rb') as file:
                             image.image.save(filename, file, save=True)
-                        os.remove(os.path.join(media_folder, filename))
                     place.save()
         if VERBOSE:
             print('Completed.\nDeleting...')
+        shutil.rmtree(os.path.join(TEMP_DIR, 'where-to-go-places-master'))
+
 
 
