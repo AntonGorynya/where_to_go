@@ -30,15 +30,3 @@ class Image(models.Model):
 
     def __str__(self):
         return f'{self.order} {self.place}'
-
-    # @classmethod
-    # def validate_number(cls, image):
-    #     numbers = list(cls.objects.filter(place=image.place).values('number').distinct())
-    #     numbers = [num['number'] for num in numbers]
-    #     print(numbers)
-    #     print(image.number)
-    #     if image.number in numbers:
-    #         raise forms.ValidationError('Номера должны отличаться')
-
-    # def clean(self):
-    #     self.validate_number(self)
