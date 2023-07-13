@@ -22,7 +22,7 @@ def index(request):
                 },
                 "properties": {
                     "title": place.title,
-                    "placeId": place.placeId,
+                    "placeId": place.id,
                     "details": f'places/{place.id}/',
                 }
             }
