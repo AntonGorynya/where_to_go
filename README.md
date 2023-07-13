@@ -14,6 +14,7 @@ pip install -r requirements.txt
 SECRET_KEY='ваш ключ'
 DEBUG=False
 ALLOWED_HOSTS=.example.com,127.0.0.1
+STATIC_ROOT='./web_app/static'
 ```
 Вы можете сгенерировать ключ командой
 ```sh
