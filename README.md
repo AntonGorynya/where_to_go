@@ -17,17 +17,17 @@ ALLOWED_HOSTS=.example.com,127.0.0.1
 ```
 Вы можете сгенерировать ключ командой
 ```sh
-python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
 
 Создайте базу данных SQLite
 
 ```sh
-python3 manage.py migrate
+python manage.py migrate
 ```
 Создайте суперпользователя
 ```sh
-python3 manage.py createsuperuser
+python manage.py createsuperuser
 ```
 
 ### Как запустить
@@ -36,8 +36,12 @@ python3 manage.py createsuperuser
 python manage.py runserver
 ```
 Для заполнения БД тестовыми данными воспользуйтесь командой
-```python
+```sh
 python manage.py load_place 
+```
+Для загрузки собственных данных введите команду ввида
+```sh
+python manage.py load_place https://mydata.url/master.zip
 ```
 По умолчанию скрипт скачивает архив данных с [репозитария](
 https://github.com/devmanorg/where-to-go-places/
