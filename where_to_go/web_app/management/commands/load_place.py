@@ -1,10 +1,11 @@
 import os
 import json
+from urllib.parse import urlparse
+import shutil
 import zipfile
 from django.core.management.base import BaseCommand
 from ...models import Image, Place
 import requests
-import shutil
 
 
 PLACES_URL = 'https://github.com/devmanorg/where-to-go-places/archive/refs/heads/master.zip'
@@ -15,8 +16,19 @@ TEMP_DIR = 'TMP'
 class Command(BaseCommand):
     help = 'Наполнение БД тестовыми данными'
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            'url',
+            nargs='?',
+            type=str,
+            default=PLACES_URL,
+            help='Url to place description',
+        )
     def handle(self, *args, **kwargs):
-        _, filename = os.path.split(PLACES_URL)
+        if is_valid_url(kwargs['url']):
+            _, filename = os.path.split(kwargs['url'])
+        else:
+            raise ValueError('Не корректный URL')
         if VERBOSE:
             print(f'{filename} downloading...\nPlease wait.')
 
@@ -59,3 +71,11 @@ class Command(BaseCommand):
         if VERBOSE:
             print('Completed.\nDeleting...')
         shutil.rmtree(os.path.join(TEMP_DIR, 'where-to-go-places-master'))
+
+
+def is_valid_url(url):
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False

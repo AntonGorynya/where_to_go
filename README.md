@@ -39,7 +39,9 @@ python manage.py runserver
 ```python
 python manage.py load_place 
 ```
-
+По умолчанию скрипт скачивает архив данных с [репозитария](
+https://github.com/devmanorg/where-to-go-places/
+) на гитхабе. Важно, что бы в иных ссылках сохранялась структура репозитория.
 
 ### Пример сайта
 Вы можете найти пример исполнения по ссылке
