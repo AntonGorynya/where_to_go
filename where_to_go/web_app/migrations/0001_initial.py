@@ -18,8 +18,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=256, verbose_name='Заголовок')),
-                ('description_short', models.TextField(null=True, verbose_name='Краткое описание')),
-                ('description_long', tinymce.models.HTMLField(null=True, verbose_name='Подробное Описание')),
+                ('description_short', models.TextField(default='', verbose_name='Краткое описание')),
+                ('description_long', tinymce.models.HTMLField(default='', verbose_name='Подробное Описание')),
                 ('lng', models.DecimalField(decimal_places=14, max_digits=17)),
                 ('lat', models.DecimalField(decimal_places=14, max_digits=17)),
             ],
