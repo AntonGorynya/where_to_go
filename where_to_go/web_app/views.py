@@ -35,7 +35,7 @@ def index(request):
 
 def get_place_meta(place):
     images = place.images.all()
-    place_meta = {
+    return {
         'title': place.title,
         'imgs': [urljoin(MEDIA_URL, image.image.url) for image in images],
         'description_short': place.description_short,
@@ -45,7 +45,6 @@ def get_place_meta(place):
             'lon': place.lng,
         }
     }
-    return place_meta
 
 
 def place_detail(request, place_id=0):
