@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 from .models import Place, Image
-from adminsortable2.admin import SortableAdminMixin, SortableStackedInline, SortableTabularInline
+from adminsortable2.admin import SortableAdminMixin, SortableTabularInline
 
 
 @admin.register(Image)
