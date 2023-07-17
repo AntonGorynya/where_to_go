@@ -3,14 +3,15 @@ from tinymce.models import HTMLField
 
 
 class Place(models.Model):
+    order = models.PositiveIntegerField(verbose_name='Порядковый номер', default=0)
     title = models.CharField(max_length=256, verbose_name='Заголовок')
-    description_short = models.TextField(default='', verbose_name='Краткое описание')
-    description_long = HTMLField(default='', verbose_name='Подробное Описание')
+    description_short = models.TextField(default='', blank=True, verbose_name='Краткое описание')
+    description_long = HTMLField(default='', blank=True, verbose_name='Подробное Описание')
     lng = models.DecimalField(max_digits=17, decimal_places=14)
     lat = models.DecimalField(max_digits=17, decimal_places=14)
 
     class Meta:
-        ordering = ['title']
+        ordering = ['order', 'title']
         unique_together = [['title', 'lng', 'lat']]
 
     def __str__(self):
