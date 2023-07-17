@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'adminsortable2',
     'tinymce',
-    'web_app',
+    'map_app',
 ]
 
 MIDDLEWARE = [
