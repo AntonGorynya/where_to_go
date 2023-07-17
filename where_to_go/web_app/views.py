@@ -34,7 +34,7 @@ def index(request):
 
 
 def get_place_meta(place):
-    images = Image.objects.filter(place=place)
+    images = place.images.all()
     place_meta = {
         'title': place.title,
         'imgs': [],
