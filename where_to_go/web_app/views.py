@@ -15,15 +15,15 @@ def index(request):
     for place in Place.objects.all():
         places['features'].append(
             {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [float(place.lng), float(place.lat)]
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [float(place.lng), float(place.lat)]
                 },
-                "properties": {
-                    "title": place.title,
-                    "placeId": place.id,
-                    "details": f'places/{place.id}/',
+                'properties': {
+                    'title': place.title,
+                    'placeId': place.id,
+                    'details': f'places/{place.id}/',
                 }
             }
         )
