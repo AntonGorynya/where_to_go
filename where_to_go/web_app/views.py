@@ -37,7 +37,7 @@ def get_place_meta(place):
     images = place.images.all()
     place_meta = {
         'title': place.title,
-        'imgs': [],
+        'imgs': [urljoin(MEDIA_URL, image.image.url) for image in images],
         'description_short': place.description_short,
         'description_long': place.description_long,
         'coordinates': {
@@ -45,8 +45,6 @@ def get_place_meta(place):
             'lon': place.lng,
         }
     }
-    for image in images:
-        place_meta['imgs'].append(urljoin(MEDIA_URL, image.image.url))
     return place_meta
 
 
