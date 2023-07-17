@@ -1,10 +1,9 @@
-import os
 from urllib.parse import urljoin
 from where_to_go.settings import STATIC_URL, MEDIA_URL
 from django.shortcuts import get_object_or_404
-from django.shortcuts import render, loader
-from django.http import HttpResponse, JsonResponse
-from .models import Place, Image
+from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Place
 
 
 def index(request):

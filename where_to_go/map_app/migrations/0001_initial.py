@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('order', models.PositiveIntegerField(default=0, verbose_name='Порядковый номер')),
                 ('image', models.ImageField(upload_to='', verbose_name='Изображение')),
-                ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='web_app.place')),
+                ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='map_app.place')),
             ],
             options={
                 'ordering': ['order', 'place'],
