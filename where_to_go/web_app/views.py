@@ -8,12 +8,9 @@ from .models import Place, Image
 
 
 def index(request):
-    places = {
-        'type': 'FeatureCollection',
-        'features': []
-    }
+    features = []
     for place in Place.objects.all():
-        places['features'].append(
+        features.append(
             {
                 'type': 'Feature',
                 'geometry': {
@@ -27,7 +24,12 @@ def index(request):
                 }
             }
         )
-    context = {'places': places}
+    context = {
+        'places': {
+            'type': 'FeatureCollection',
+            'features': features
+        }
+    }
     template = loader.get_template('index.html')
     return HttpResponse(template.render(context))
 
