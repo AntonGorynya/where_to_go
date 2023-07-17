@@ -30,8 +30,7 @@ def index(request):
             'features': features
         }
     }
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render(context))
+    return render(request, 'index.html', context=context)
 
 
 def get_place_meta(place):
