@@ -5,10 +5,10 @@ from tinymce.models import HTMLField
 class Place(models.Model):
     order = models.PositiveIntegerField(verbose_name='Порядковый номер', default=0)
     title = models.CharField(max_length=256, verbose_name='Заголовок')
-    description_short = models.TextField(default='', blank=True, verbose_name='Краткое описание')
-    description_long = HTMLField(default='', blank=True, verbose_name='Подробное Описание')
-    lng = models.DecimalField(max_digits=17, decimal_places=14)
-    lat = models.DecimalField(max_digits=17, decimal_places=14)
+    description_short = models.TextField(blank=True, verbose_name='Краткое описание')
+    description_long = HTMLField(blank=True, verbose_name='Подробное описание')
+    lng = models.DecimalField(max_digits=17, decimal_places=14, verbose_name='Широта')
+    lat = models.DecimalField(max_digits=17, decimal_places=14, verbose_name='Долгота')
 
     class Meta:
         ordering = ['order', 'title']
@@ -21,7 +21,7 @@ class Place(models.Model):
 class Image(models.Model):
     order = models.PositiveIntegerField(verbose_name='Порядковый номер', default=0)
     image = models.ImageField('Изображение')
-    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images')
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images', verbose_name='Место')
 
     class Meta:
         ordering = ['order', 'place']
