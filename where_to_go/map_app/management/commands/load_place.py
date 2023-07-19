@@ -24,6 +24,7 @@ class Command(BaseCommand):
             default=PLACES_URL,
             help='Url to place description',
         )
+
     def handle(self, *args, **kwargs):
         if is_valid_url(kwargs['url']):
             _, filename = os.path.split(kwargs['url'])
